@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'bookmarks/new'
   get 'categories/index'
   get 'categories/new'
   get 'categories/show'
@@ -11,6 +12,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  resources :categories, only: [:index, :show, :new, :create]
+  resources :categories, only: [:index, :show, :new, :create] do
+    resources :bookmarks, only: [:new, :create]
+  end
+  resources :bookmarks, only: [:destroy]
 
 end

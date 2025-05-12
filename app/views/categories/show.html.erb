@@ -2,3 +2,22 @@
 <p>Find me in app/views/categories/show.html.erb</p>
 
 <h2><%= @category.name %></h2>
+
+<ul class="list-group">
+ <% @category.bookmarks.each do |bookmark| %>
+  <li class="list-group-item">
+  <%= bookmark.comment %>
+  <br><%= bookmark.recipe.rating %>
+  <br><%= bookmark.recipe.description %>
+  <br><%= bookmark.recipe.name %>
+  <br><%= bookmark.recipe.image_url %>
+  <br><%= link_to "delete", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+  </li>
+<% end %>
+</ul>
+<br>
+<br>
+<%= link_to "Add bookmark", new_category_bookmark_path(@category) %>
+<br>
+<br>
+ <%= link_to "Back to Categories", categories_path %>
