@@ -9,6 +9,8 @@
 #   end
 puts "cleaning database"
 Recipe.destroy_all
+# if I do destroy recipes in this seed, to re-run, i need to destroy all bookmarks first as there is a validation dependency!
+
 
 puts "creating recipes"
 Recipe.create(name: "Best Yorkshire puddings", description: "The secret to getting gloriously puffed-up Yorkshire puddings is to have the fat sizzling hot and don't open the oven door!", rating: "4.5", image_url:"https://images.immediate.co.uk/production/volatile/sites/30/2020/08/recipe-image-legacy-id-901451_9-687c42b.jpg?quality=90")
