@@ -2,7 +2,7 @@ class Bookmark < ApplicationRecord
   belongs_to :recipe
   belongs_to :category
 
-   validates :recipe_id, uniqueness: {scope: :category_id, message: "Recipe already exists in category"}
+   validates :recipe_id, uniqueness: {scope: :category_id, message: "already exists in category"}
    validates :comment, length: {minimum: 6}
 
 end

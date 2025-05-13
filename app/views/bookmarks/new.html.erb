@@ -1,11 +1,11 @@
-<h1>Bookmarks#new</h1>
-<p>Find me in app/views/bookmarks/new.html.erb</p>
-
-<%= simple_form_for [@category, @bookmark] do |f| %>
-  <%= f.input :comment %>
-  <%= f.association :recipe %>
-  <%= f.button :submit %>
-<% end %>
-
-
- <%= link_to "Back to category", category_path(@category) %>
+<div class="container-lg border form mt-4">
+  <h2>Create New Bookmark</h2>
+  <%= simple_form_for [@category, @bookmark] do |f| %>
+    <%= f.input :comment %>
+    <%= f.association :recipe %>
+    <div class="d-flex justify-content-between">
+    <%= f.button :submit, class: "btn btn-gradient mb-3" %>
+    <%= link_to "Cancel without saving", category_path(@category), class: "btn btn-gradient mb-3"  %>
+    </div>
+  <% end %>
+ </div>

@@ -1,23 +1,36 @@
-<h1>Categories#show</h1>
-<p>Find me in app/views/categories/show.html.erb</p>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
+  <%# <%= link_to "Add bookmark", new_category_bookmark_path(@category), class: " banner-button btn btn-gradient" %> %>
+  <div class="banner-text">
+    <h1><%= @category.name %></h1>
+  </div>
+</div>
 
-<h2><%= @category.name %></h2>
+<div class="container">
+  <h1>Recipes</h1>
+    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"> <%= link_to "Home", categories_path %></li>
+        <li class="breadcrumb-item active" aria-current="page"><%= @category.name %></li>
+      </ol>
+    </nav>
 
-<ul class="list-group">
- <% @category.bookmarks.each do |bookmark| %>
-  <li class="list-group-item">
-  <%= bookmark.comment %>
-  <br><%= bookmark.recipe.rating %>
-  <br><%= bookmark.recipe.description %>
-  <br><%= bookmark.recipe.name %>
-  <br><%= bookmark.recipe.image_url %>
-  <br><%= link_to "delete", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-  </li>
-<% end %>
-</ul>
-<br>
-<br>
-<%= link_to "Add bookmark", new_category_bookmark_path(@category) %>
-<br>
-<br>
- <%= link_to "Back to Categories", categories_path %>
+
+  <div class="cards">
+    <% @category.bookmarks.each do |bookmark| %>
+      <div class="card card-recipe border m-2">
+          <img src=<%= bookmark.recipe.image_url %> class="card-img-top" alt=<%= bookmark.recipe.name %>>
+          <div class="card-body">
+            <h5 class = "card-title"><%= bookmark.recipe.name %></h5>
+            <p class = "card-text"><%= bookmark.recipe.description %></p>
+            <p><i class="fa-solid fa-comment"></i><%= bookmark.comment %><span class="text-end"> <%= bookmark.recipe.rating %><i class="fa-solid fa-star" style="color: #FFD43B;"></i></span></p>
+            <%= link_to raw("<i class='fa-solid fa-trash'></i>"), bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+          </div>
+        </div>
+    <% end %>
+
+    <div>
+        <%= link_to "Add bookmark", new_category_bookmark_path(@category), class: " btn btn-gradient" %>
+    </div>
+    </div>
+     <%= link_to "Back to Categories", categories_path, class: "btn btn-gradient mt-3"%>
+  </div>

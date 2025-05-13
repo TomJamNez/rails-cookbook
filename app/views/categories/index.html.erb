@@ -1,15 +1,12 @@
-<h1>Categories#index</h1>
-<p>Find me in app/views/categories/index.html.erb</p>
-
-<div class="container">
-  <% @categories.each do |category| %>
-    <div class="card">
-    <%= link_to category.name, category_path(category) %>
-    </div>
-  <% end%>
+<div class="banner banner-categories">
+  <div class="banner-text">
+    <h1>Cookbook</h1>
+    <p>Save your favourite recipes</p>
+  </div>
 </div>
-<br>
-<br>
-<br>
 
- <%= link_to "add category", new_category_path %>
+<% if @categories.count > 5 %>
+  <%= render "shared/cardList"%>
+  <% else %>
+  <%= render "shared/courasel"%>
+<% end %>
