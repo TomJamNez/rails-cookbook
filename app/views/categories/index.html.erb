@@ -5,8 +5,10 @@
   </div>
 </div>
 
-<% if @categories.count > 5 %>
-  <%= render "shared/cardList"%>
-  <% else %>
-  <%= render "shared/courasel"%>
+<% if @categories.count == 0 %>
+  <%= render "shared/noCategory"%>
+    <% elsif @categories.count > 3 %>
+      <%= render "shared/cardList"%>
+      <% else %>
+      <%= render "shared/courasel"%>
 <% end %>
